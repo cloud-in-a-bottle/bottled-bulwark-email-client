@@ -43,6 +43,8 @@ const server = http.createServer(async (req, res) => {
   const isSession = endpoint === "/.well-known/jmap";
   const targetPath = SERVICE_CALL_PREFIX + (endpoint.startsWith("/") ? endpoint : "/" + endpoint);
 
+  console.log(`[consumer] ${req.method} ${endpoint} → ${routerParsed.hostname}:${routerParsed.port}${targetPath}`);
+
   const proxyReq = http.request(
     {
       hostname: routerParsed.hostname,
@@ -52,6 +54,7 @@ const server = http.createServer(async (req, res) => {
       headers: headers,
     },
     (proxyRes) => {
+      console.log(`[consumer] ← ${proxyRes.statusCode} from ${targetPath}`);
       if (isSession && proxyRes.statusCode === 200) {
         // Buffer and rewrite session response
         const chunks = [];
