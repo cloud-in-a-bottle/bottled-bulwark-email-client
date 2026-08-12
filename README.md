@@ -1,1 +1,1 @@
-# openhost-bulwark-email-client
+# bottled-bulwark-email-client
