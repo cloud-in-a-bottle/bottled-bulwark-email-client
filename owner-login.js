@@ -35,7 +35,7 @@ function loadAccounts() {
   }
   return [
     {
-      user: process.env.OWNER_EMAIL_USER || "owner",
+      user: process.env.OWNER_EMAIL_USER || "me",
       password: process.env.OWNER_EMAIL_PASSWORD || "openhost-owner-email",
     },
   ];
